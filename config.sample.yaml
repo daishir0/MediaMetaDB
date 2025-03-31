@@ -1,0 +1,22 @@
+# MediaMetaDB Configuration File
+# Copy this file to config.yaml and customize as needed
+
+# Timezone setting
+# Examples: 'Asia/Tokyo', 'America/New_York', 'Europe/London', 'UTC', etc.
+# This timezone will be used for all date/time conversions
+timezone: 'Asia/Tokyo'
+
+# Database settings
+database:
+  # Default database filename
+  # You can override this with the --db-path command line option
+  filename: 'data.db'
+
+# Logging settings
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  # DEBUG provides the most detailed output, CRITICAL provides only critical errors
+  default_level: 'INFO'
+  # Log filename format (using strftime format codes)
+  # Default creates files like: 20250331-113000.log
+  filename_format: '%Y%m%d-%H%M%S.log'
