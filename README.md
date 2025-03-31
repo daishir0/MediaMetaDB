@@ -78,6 +78,38 @@ python get_media_data.py /path/to/photos --export-csv /path/to/export.csv
 python get_media_data.py /path/to/photos --force
 ```
 
+### Using export_media.py
+The `export_media.py` script allows you to search for media files in the database by date and optionally export them with renamed filenames based on their capture time.
+
+#### Basic Usage
+```
+python export_media.py 2025-03-22 2025-03-23 2025-03-24
+```
+
+#### Command Line Options
+- `--export`: Export files to ./export directory with renamed filenames based on capture time
+- `--clean`: Clean export directory before exporting files
+
+#### Examples
+
+##### Search for media files by date
+```
+python export_media.py 2025-03-22 2025-03-23 2025-03-24
+```
+
+##### Export files with renamed filenames
+```
+python export_media.py 2025-03-22 2025-03-23 2025-03-24 --export
+```
+
+##### Clean export directory before exporting
+```
+python export_media.py 2025-03-22 2025-03-23 2025-03-24 --export --clean
+```
+
+##### Special Feature: Identifying Images Captured During Videos
+When using the `--export` option, any static image files (jpg, png, etc.) that were captured during the duration of a video file will have "-include" added to their filenames. This makes it easy to identify images that are related to video recordings.
+
 ## Database Structure
 The SQLite database (`data.db`) contains a single table `media_files` with the following columns:
 
@@ -191,6 +223,38 @@ python get_media_data.py /path/to/photos --export-csv /path/to/export.csv
 ```
 python get_media_data.py /path/to/photos --force
 ```
+
+### export_media.pyの使い方
+`export_media.py`スクリプトを使用すると、データベース内のメディアファイルを日付で検索し、オプションで撮影日時に基づいてリネームしたファイルをエクスポートできます。
+
+#### 基本的な使い方
+```
+python export_media.py 2025-03-22 2025-03-23 2025-03-24
+```
+
+#### コマンドラインオプション
+- `--export`: ファイルを./exportディレクトリにコピーし、撮影日時でリネーム
+- `--clean`: エクスポート前に./exportディレクトリをクリーンアップ
+
+#### 使用例
+
+##### 日付でメディアファイルを検索
+```
+python export_media.py 2025-03-22 2025-03-23 2025-03-24
+```
+
+##### リネームしてファイルをエクスポート
+```
+python export_media.py 2025-03-22 2025-03-23 2025-03-24 --export
+```
+
+##### エクスポート前にディレクトリをクリーンアップ
+```
+python export_media.py 2025-03-22 2025-03-23 2025-03-24 --export --clean
+```
+
+##### 特別機能：動画撮影中に撮影された画像の識別
+`--export`オプションを使用すると、動画ファイルの撮影時間内に撮影された静止画ファイル（jpg、pngなど）のファイル名に「-include」が追加されます。これにより、動画撮影に関連する画像を簡単に識別できます。
 
 ## データベース構造
 SQLiteデータベース（`data.db`）には、以下のカラムを持つ`media_files`テーブルが含まれています：
