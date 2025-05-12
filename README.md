@@ -110,6 +110,51 @@ python export_media.py 2025-03-22 2025-03-23 2025-03-24 --export --clean
 ##### Special Feature: Identifying Images Captured During Videos
 When using the `--export` option, any static image files (jpg, png, etc.) that were captured during the duration of a video file will have "-include" added to their filenames. This makes it easy to identify images that are related to video recordings.
 
+### Using export_child.py
+The `export_child.py` script uses YOLOv8 to detect images containing children in the database and exports a random selection of them.
+
+#### Basic Usage
+```
+python export_child.py
+```
+
+#### Command Line Options
+- `--db-path`: Path to SQLite database file (default: data.db)
+- `--output-dir`: Output directory for exported images (default: ./output)
+- `--cache-file`: Path to cache file (default: export_child.cache)
+- `--model-dir`: Directory for YOLOv8 model (default: ./models)
+- `--confidence`: Detection confidence threshold (0.0-1.0) (default: 0.5)
+- `--num-copies`: Number of images to export (default: 50)
+- `--workers`: Number of parallel workers (default: 4)
+- `--debug`: Enable debug mode for detailed logging
+
+#### Examples
+
+##### Run with default settings
+```
+python export_child.py
+```
+
+##### Specify database path and output directory
+```
+python export_child.py --db-path /path/to/media.db --output-dir /path/to/export
+```
+
+##### Adjust confidence threshold and number of exported images
+```
+python export_child.py --confidence 0.7 --num-copies 100
+```
+
+##### Increase worker threads for faster processing
+```
+python export_child.py --workers 8
+```
+
+##### Enable debug mode for detailed logs
+```
+python export_child.py --debug
+```
+
 ## Database Structure
 The SQLite database (`data.db`) contains a single table `media_files` with the following columns:
 
@@ -255,6 +300,51 @@ python export_media.py 2025-03-22 2025-03-23 2025-03-24 --export --clean
 
 ##### 特別機能：動画撮影中に撮影された画像の識別
 `--export`オプションを使用すると、動画ファイルの撮影時間内に撮影された静止画ファイル（jpg、pngなど）のファイル名に「-include」が追加されます。これにより、動画撮影に関連する画像を簡単に識別できます。
+
+### export_child.pyの使い方
+`export_child.py`スクリプトはYOLOv8を使用して、データベース内の子供が写っている画像を検出し、ランダムに選択した画像をエクスポートします。
+
+#### 基本的な使い方
+```
+python export_child.py
+```
+
+#### コマンドラインオプション
+- `--db-path`: SQLiteデータベースファイルのパス（デフォルト: data.db）
+- `--output-dir`: エクスポート先ディレクトリ（デフォルト: ./output）
+- `--cache-file`: キャッシュファイルのパス（デフォルト: export_child.cache）
+- `--model-dir`: YOLOv8モデルディレクトリ（デフォルト: ./models）
+- `--confidence`: 検出信頼度の閾値 (0.0-1.0)（デフォルト: 0.5）
+- `--num-copies`: エクスポートする画像の枚数（デフォルト: 50）
+- `--workers`: 並列処理のワーカー数（デフォルト: 4）
+- `--debug`: デバッグモードを有効にして詳細なログを表示
+
+#### 使用例
+
+##### デフォルト設定で実行
+```
+python export_child.py
+```
+
+##### データベースパスと出力ディレクトリを指定
+```
+python export_child.py --db-path /path/to/media.db --output-dir /path/to/export
+```
+
+##### 信頼度閾値と出力枚数を調整
+```
+python export_child.py --confidence 0.7 --num-copies 100
+```
+
+##### ワーカー数を増やして処理速度を向上
+```
+python export_child.py --workers 8
+```
+
+##### デバッグモードを有効にして詳細なログを表示
+```
+python export_child.py --debug
+```
 
 ## データベース構造
 SQLiteデータベース（`data.db`）には、以下のカラムを持つ`media_files`テーブルが含まれています：
